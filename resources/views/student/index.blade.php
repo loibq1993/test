@@ -13,9 +13,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($mentors as $mentor)
+                    @foreach($mentors as $key => $mentor)
                         <tr>
-                            <th scope="row">1</th>
+                            <th scope="row">{{$key+1}}</th>
                             <td>{{$mentor->name}}</td>
                             <td>{{$mentor->email}}</td>
                             <td><a class="btn btn-success" href="{{route('student.mentors.show', $mentor->mentor_id)}}">Show</a></td>
