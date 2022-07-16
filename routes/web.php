@@ -23,7 +23,8 @@ Route::group(['middleware' => ['auth', 'role:ROLE_ADMIN'], 'prefix' => 'admin'],
     Route::get('index', 'App\Http\Controllers\AdminController@index');
 });
 Route::group(['middleware' => ['auth', 'role:ROLE_MENTOR'], 'prefix' => 'mentor'], function () {
-    Route::get('index', 'App\Http\Controllers\MentorController@index');
+    Route::get('index', 'App\Http\Controllers\MentorController@index')->name('index');
+    Route::get('/show/{id}', 'App\Http\Controllers\MentorController@show')->name('mentor.show');
 });
 Route::group(['middleware' => ['auth', 'role:ROLE_STUDENT'], 'prefix' => 'student'], function() {
     Route::get('index', 'App\Http\Controllers\StudentController@index');
