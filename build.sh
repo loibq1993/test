@@ -3,7 +3,7 @@
 cd /var/www/html/ && \
 composer install && \
 composer dumpautoload && \
-chown -R nginx:ec2-user /var/www/html/ && \
+sudo chown -R nginx:ec2-user /var/www/html/ && \
 find /var/www/html/ -type f -exec chmod 664 {} \; && \
 find /var/www/html/ -type d -exec chmod 755 {} \; && \
 php artisan migrate --force && \
