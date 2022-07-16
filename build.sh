@@ -12,6 +12,5 @@ php artisan config:clear && \
 php artisan route:clear && \
 php artisan queue:restart && \
 php artisan storage:link && \
-supervisorctl reload && \
-cp -f scripts/laravel_crontab /etc/cron.d/
-
+sudo service supervisord restart  && \
+sudo cp -f scripts/laravel_crontab /etc/cron.d/
