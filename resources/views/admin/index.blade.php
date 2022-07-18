@@ -23,7 +23,11 @@
                         <td>{{$mentor->email}}</td>
                         <td>
                             <a class="btn btn-info" href="{{route('student.list', $mentor->id)}}">Show</a>
-                            <a class="btn btn-danger" href="{{route('user.delete', $mentor->id)}}">Delete</a>
+                            <form action="{{route('user.delete', $mentor->id)}}" method="post" style="display: inline-flex">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-danger" >Delete</button>
+                            </form>
                             <a class="btn btn-warning">Assign student</a>
                         </td>
                     </tr>
@@ -51,8 +55,9 @@
                         <td>{{$student->email}}</td>
                         <td>
                             <a class="btn btn-info" href="{{route('mentor.list', $student->id)}}">Show</a>
-                            <form action="{{route('user.delete', $mentor->id)}}" method="post" style="display: inline-flex">
+                            <form action="{{route('user.delete', $student->id)}}" method="post" style="display: inline-flex">
                                 @csrf
+                                @method('delete')
                                 <button class="btn btn-danger" >Delete</button>
                             </form>
                             <a class="btn btn-warning">Assign mentor</a>
