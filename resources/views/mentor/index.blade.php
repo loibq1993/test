@@ -18,7 +18,11 @@
                             <th scope="row">{{$key+1}}</th>
                             <td>{{$student->name}}</td>
                             <td>{{$student->email}}</td>
-                            <td><a class="btn btn-success" href="{{route('mentor.show', $student->student_id)}}">Show</a></td>
+                            <td>
+                                @if(!Str::contains($currentURL = URL::current(), 'admin'))
+                                    <a class="btn btn-success" href="{{route('mentor.show', $student->student_id)}}">Show</a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

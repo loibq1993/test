@@ -97,4 +97,29 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'Data has been deleted successfully');
     }
+
+    public function studentsOfMentor($id)
+    {
+        $students = User::join('mentor_student', 'mentor_student.student_id', '=', 'users.id')
+            ->whereHas('roles', function($q){
+                $q->where('name', 'ROLE_STUDENT');
+            })
+            ->where('mentor_student.mentor_id', $id)
+            ->get();
+
+        return view('mentor.index', compact('students'));
+    }
+
+    public function mentorOfStudent($id)
+    {
+        $user = Auth::user();
+        $mentors = User::join('mentor_student', 'mentor_student.mentor_id', '=', 'users.id')
+            ->whereHas('roles', function($q){
+                $q->where('name', 'ROLE_MENTOR');
+            })
+            ->where('mentor_student.student_id', $id)
+            ->get();
+
+        return view('student.index', compact('mentors'));
+    }
 }
